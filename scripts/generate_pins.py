@@ -9,7 +9,7 @@ def generate_pinterest_images():
     In production, this would use a graphics library (like Pillow) 
     to create optimized images for Pinterest.
     """
-    print("🎨 Generating Pinterest optimized images (placeholder)...")
+    print("[pins] Generating Pinterest optimized images (placeholder)...")
     return True
 
 if __name__ == "__main__":

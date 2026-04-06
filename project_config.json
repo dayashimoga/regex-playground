@@ -141,6 +141,11 @@
             "SITE_NAME": "Pixel Art Editor",
             "SITE_URL": "https://pixelart.quickutils.top",
             "GA_MEASUREMENT_ID": "G-PIXELART001"
+        },
+        "music-maker": {
+            "SITE_NAME": "Music Maker",
+            "SITE_URL": "https://music.quickutils.top",
+            "GA_MEASUREMENT_ID": "G-MUSIC00001"
         }
     }
 }
