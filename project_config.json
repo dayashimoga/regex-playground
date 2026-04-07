@@ -146,6 +146,56 @@
             "SITE_NAME": "Music Maker",
             "SITE_URL": "https://music.quickutils.top",
             "GA_MEASUREMENT_ID": "G-MUSIC00001"
+        },
+        "chemistry-lab": {
+            "SITE_NAME": "Chemistry Lab",
+            "SITE_URL": "https://chemistry.quickutils.top",
+            "GA_MEASUREMENT_ID": "G-CHEMISTRY01"
+        },
+        "algorithm-visualizer": {
+            "SITE_NAME": "Algorithm Visualizer",
+            "SITE_URL": "https://algorithms.quickutils.top",
+            "GA_MEASUREMENT_ID": "G-ALGO0000001"
+        },
+        "code-arena": {
+            "SITE_NAME": "Code Arena",
+            "SITE_URL": "https://code.quickutils.top",
+            "GA_MEASUREMENT_ID": "G-CODEARENA01"
+        },
+        "quiz-master": {
+            "SITE_NAME": "Quiz Master",
+            "SITE_URL": "https://quiz.quickutils.top",
+            "GA_MEASUREMENT_ID": "G-QUIZMASTER1"
+        },
+        "life-simulator": {
+            "SITE_NAME": "Life Simulator",
+            "SITE_URL": "https://life.quickutils.top",
+            "GA_MEASUREMENT_ID": "G-LIFESIM0001"
+        },
+        "whiteboard": {
+            "SITE_NAME": "Collaborative Whiteboard",
+            "SITE_URL": "https://whiteboard.quickutils.top",
+            "GA_MEASUREMENT_ID": "G-WHITEBOARD1"
+        },
+        "chart-maker": {
+            "SITE_NAME": "Chart Maker",
+            "SITE_URL": "https://charts.quickutils.top",
+            "GA_MEASUREMENT_ID": "G-CHARTMAKER1"
+        },
+        "css-battle": {
+            "SITE_NAME": "CSS Battle",
+            "SITE_URL": "https://cssbattle.quickutils.top",
+            "GA_MEASUREMENT_ID": "G-CSSBATTLE01"
+        },
+        "retro-games": {
+            "SITE_NAME": "Retro Games",
+            "SITE_URL": "https://games.quickutils.top",
+            "GA_MEASUREMENT_ID": "G-RETROGAME01"
+        },
+        "unit-converter": {
+            "SITE_NAME": "Unit Converter",
+            "SITE_URL": "https://units.quickutils.top",
+            "GA_MEASUREMENT_ID": "G-UNITCONV001"
         }
     }
 }

@@ -59,7 +59,10 @@ tmp_parse*.py
 temp_*/
 cov_out.txt
 utf8_cov.txt
-
+coverage-output.txt
+current-test.txt
+fail_detail.txt
+old_projects.json
 # OS and IDE
 .DS_Store
 Thumbs.db

@@ -136,3 +136,114 @@ if (localStorage.getItem('theme') === 'light') { document.documentElement.datase
 renderPatterns();
 runRegex();
 })();
+
+
+// ── Challenges ──
+const CHALLENGES = [
+    { title: "The Basics", desc: "Match the word 'cat', 'bat', or 'rat'.", text: "I saw a cat and a bat chasing a rat.", shouldMatch: ["cat", "bat", "rat"] },
+    { title: "Digits Only", desc: "Match all numbers in the text.", text: "Order 45 placed on 2026-04-06 for $15.", shouldMatch: ["45", "2026", "04", "06", "15"] },
+    { title: "Vowels", desc: "Match every single vowel (a, e, i, o, u) case-insensitive.", text: "Hello World! AEIOU", shouldMatch: ["e", "o", "o", "A", "E", "I", "O", "U"] },
+    { title: "Valid Emails", desc: "Match only the valid email addresses.", text: "test@test.com  admin@localhost  bad-email  john.doe@company.org", shouldMatch: ["test@test.com", "john.doe@company.org"] },
+    { title: "HTML Tags", desc: "Extract just the bold HTML tags (including angle brackets).", text: "This is <b>bold</b> and this is <i>italic</i>.", shouldMatch: ["<b>", "</b>"] }
+];
+
+let currentChal = 0;
+let chalScore = 0;
+
+$('#modePlayground').addEventListener('click', () => {
+    $('#viewPlayground').style.display = 'block';
+    $('#viewChallenge').style.display = 'none';
+    $('#modePlayground').className = 'btn btn-primary';
+    $('#modeChallenge').className = 'btn btn-secondary';
+});
+
+$('#modeChallenge').addEventListener('click', () => {
+    $('#viewPlayground').style.display = 'none';
+    $('#viewChallenge').style.display = 'block';
+    $('#modeChallenge').className = 'btn btn-primary';
+    $('#modePlayground').className = 'btn btn-secondary';
+    loadChallenge();
+});
+
+function loadChallenge() {
+    if (currentChal >= CHALLENGES.length) {
+        $('#chalTitle').textContent = "You Win! 🎉";
+        $('#chalDesc').textContent = `Final Score: ${chalScore} / ${CHALLENGES.length*100}`;
+        $('#chalNextBtn').style.display = 'none';
+        $('#chalTestArea').innerHTML = '';
+        return;
+    }
+    const ch = CHALLENGES[currentChal];
+    $('#chalLevel').textContent = currentChal + 1;
+    $('#chalTitle').textContent = ch.title;
+    $('#chalDesc').textContent = ch.desc;
+    $('#chalRegexInput').value = '';
+    $('#chalTestArea').textContent = ch.text;
+    $('#chalNextBtn').disabled = true;
+    $('#chalNextBtn').className = 'btn btn-secondary btn-large w-100 mt-4';
+    $('#chalNextBtn').textContent = 'Next Challenge ➡️';
+    runChalRegex();
+}
+
+$('#chalRegexInput').addEventListener('input', runChalRegex);
+$('#chalFlagsInput').addEventListener('input', runChalRegex);
+
+function runChalRegex() {
+    const ch = CHALLENGES[currentChal];
+    const pattern = $('#chalRegexInput').value;
+    const flags = $('#chalFlagsInput').value;
+    if (!pattern) return;
+    
+    let regex;
+    try { regex = new RegExp(pattern, flags); } catch(e) { return; }
+    
+    const text = ch.text;
+    let matches = [];
+    let m;
+    const isGlobal = flags.includes('g');
+    if (isGlobal) {
+        while ((m = regex.exec(text)) !== null) {
+            matches.push(m);
+            if (matches.length > 500) break;
+            if (m[0].length === 0) regex.lastIndex++; // prevent infinite loop
+        }
+    } else {
+        m = regex.exec(text); if (m) matches.push(m);
+    }
+    
+    // Highlight
+    let result = ''; let lastIndex = 0;
+    const matchStrings = matches.map(mx => mx[0]);
+    let perfect = true;
+    
+    for (const match of matches) {
+        result += escapeHtml(text.slice(lastIndex, match.index));
+        // Check if this specific match is correct (not robust ordering but mostly ok)
+        const isGood = ch.shouldMatch.includes(match[0]);
+        result += `<mark style="background:${isGood ? 'var(--success)' : 'var(--danger)'}; color:white">${escapeHtml(match[0])}</mark>`;
+        lastIndex = match.index + match[0].length;
+    }
+    result += escapeHtml(text.slice(lastIndex));
+    $('#chalTestArea').innerHTML = result;
+    
+    // Validate
+    const uniqueMatches = [...new Set(matchStrings)];
+    const uniqueExpected = [...new Set(ch.shouldMatch)];
+    
+    if (uniqueMatches.length === uniqueExpected.length && uniqueMatches.every(v => uniqueExpected.includes(v))) {
+        $('#chalNextBtn').disabled = false;
+        $('#chalNextBtn').className = 'btn btn-primary btn-large w-100 mt-4';
+        $('#chalNextBtn').textContent = 'Correct! Next ➡️';
+    } else {
+        $('#chalNextBtn').disabled = true;
+        $('#chalNextBtn').className = 'btn btn-secondary btn-large w-100 mt-4';
+        $('#chalNextBtn').textContent = 'Keep trying...';
+    }
+}
+
+$('#chalNextBtn').addEventListener('click', () => {
+    chalScore += 100;
+    $('#chalScore').textContent = chalScore;
+    currentChal++;
+    loadChallenge();
+});

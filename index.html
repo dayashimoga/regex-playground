@@ -38,7 +38,14 @@
             <p class="hero-sub">Write, test, and debug regular expressions with instant visual matching and explanations.</p>
         </section>
 
-        <div class="editor-layout">
+        
+        <div class="mode-tabs mt-2 mb-4" style="display:flex; gap:10px; justify-content:center;">
+            <button class="btn btn-primary" id="modePlayground">🛠️ Playground</button>
+            <button class="btn btn-secondary" id="modeChallenge">🏆 Challenges</button>
+        </div>
+
+        <div id="viewPlayground">
+<div class="editor-layout">
             <div class="editor-col">
                 <div class="input-group glass-card">
                     <label class="input-label">Regular Expression</label>
@@ -89,7 +96,39 @@ hello@world.co.uk</textarea>
             </div>
         </div>
 
-        <section class="cheatsheet-section" id="cheatsheet">
+        
+        </div>
+
+        <div id="viewChallenge" style="display:none;">
+            <div class="glass-card" style="max-width:800px; margin:0 auto; text-align:center;">
+                <h2 id="chalTitle" style="color:var(--accent);">Challenge Mode</h2>
+                <p id="chalDesc" style="color:var(--text-muted); margin-bottom:20px;">Complete challenges to test your regex skills.</p>
+                
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px; font-weight:bold;">
+                    <span>Level <span id="chalLevel">1</span>/5</span>
+                    <span>Score: <span id="chalScore">0</span></span>
+                </div>
+
+                <div class="input-group glass-card" style="text-align:left;">
+                    <label class="input-label">Pattern</label>
+                    <div class="regex-input-wrap">
+                        <span class="regex-delim">/</span>
+                        <input type="text" id="chalRegexInput" class="regex-input" placeholder="Your regex here..." spellcheck="false">
+                        <span class="regex-delim">/</span>
+                        <input type="text" id="chalFlagsInput" class="flags-input" value="g" placeholder="flags" maxlength="6">
+                    </div>
+                </div>
+
+                <div class="input-group glass-card mt-4" style="text-align:left;">
+                    <label class="input-label">Test Case (Match green, avoid red)</label>
+                    <div id="chalTestArea" class="highlighted-text" style="background:var(--bg-input); padding:15px; border-radius:8px; font-family:'JetBrains Mono', monospace; font-size:0.9rem; line-height:1.6; white-space:pre-wrap;"></div>
+                </div>
+
+                <button class="btn btn-primary btn-large mt-4 w-100" id="chalNextBtn" disabled>Next Challenge ➡️</button>
+            </div>
+            <!-- Hacky fix: finish sections correctly -->
+        </div>
+<section class="cheatsheet-section" id="cheatsheet">
             <h2>📖 Regex Cheatsheet</h2>
             <div class="cheat-grid">
                 <div class="cheat-category">
