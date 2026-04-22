@@ -85,17 +85,15 @@
 
                 <div class="input-group glass-card">
                     <label class="input-label">Test String</label>
-                    <textarea id="testString" class="test-textarea" rows="10" placeholder="Enter test text...">john@example.com
+                    <div class="editor-overlay-container">
+                        <div id="highlightedText" class="highlighted-text backdrop"></div>
+                        <textarea id="testString" class="test-textarea overlay-textarea" spellcheck="false">john@example.com
 jane.doe@company.org
 admin@localhost
 user123@test-site.net
 invalid-email.com
 hello@world.co.uk</textarea>
-                </div>
-
-                <div class="input-group glass-card">
-                    <label class="input-label">Match Results</label>
-                    <div class="highlighted-text" id="highlightedText"></div>
+                    </div>
                 </div>
             </div>
 

@@ -130,6 +130,10 @@ function renderPatterns() {
 regexInput.addEventListener('input', runRegex);
 flagsInput.addEventListener('input', runRegex);
 testString.addEventListener('input', runRegex);
+testString.addEventListener('scroll', () => {
+    highlightedText.scrollTop = testString.scrollTop;
+    highlightedText.scrollLeft = testString.scrollLeft;
+});
 replaceInput.addEventListener('input', runRegex);
 $('#themeBtn').addEventListener('click', () => { const d = document.documentElement; const isDark = d.dataset.theme === 'dark'; d.dataset.theme = isDark ? 'light' : 'dark'; $('#themeBtn').textContent = isDark ? '☀️' : '🌙'; localStorage.setItem('theme', d.dataset.theme); });
 if (localStorage.getItem('theme') === 'light') { document.documentElement.dataset.theme = 'light'; $('#themeBtn').textContent = '☀️'; }
